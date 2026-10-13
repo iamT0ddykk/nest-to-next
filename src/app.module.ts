@@ -4,6 +4,7 @@ import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { AuthModule } from './Auth/auth.module.js';
 import { AuthController } from './Auth/auth.controller.js';
+import { AuthService } from './Auth/auth.service.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -17,6 +18,6 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     }),
   ],
   controllers: [AppController, AuthController],
-  providers: [AppService],
+  providers: [AppService, AuthService],
 })
 export class AppModule {}
