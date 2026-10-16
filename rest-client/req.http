@@ -3,3 +3,9 @@
 GET {{baseUrl}}
 ###
 POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "nome" : "sam",
+  "asd" : "asd"
+}
