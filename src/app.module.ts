@@ -6,6 +6,7 @@ import { AuthModule } from './Auth/auth.module.js';
 import { AuthController } from './Auth/auth.controller.js';
 import { AuthService } from './Auth/auth.service.js';
 import { UserModule } from './user/user.module.js';
+import { PostModule } from './post/post.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -18,6 +19,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
       serviceId: 'nest-to-next',
     }),
     UserModule,
+    PostModule,
   ],
   controllers: [AppController, AuthController],
   providers: [AppService, AuthService],
