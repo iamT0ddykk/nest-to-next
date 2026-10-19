@@ -2,10 +2,12 @@
 ###
 GET {{baseUrl}}
 ###
+GET {{baseUrl}}/user/123
+###
 POST {{baseUrl}}/auth/login
 Content-Type: application/json
 
 {
-  "nome" : "sam",
-  "asd" : "asd"
+  "email" : "sa@gmail.com",
+  "senha" : "123"
 }
