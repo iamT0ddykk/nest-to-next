@@ -9,6 +9,6 @@ export class AuthController {
   @Post('login')
   login(@Body() loginDto: LoginDto) {
     this.authService.getHello(loginDto);
-    console.log('OIASD');
+    console.log(loginDto.senha);
   }
 }

@@ -9,5 +9,5 @@ Content-Type: application/json
 
 {
   "email" : "sa@gmail.com",
-  "senha" : "123"
+  "senha" : 123
 }
