@@ -8,6 +8,7 @@ import { AuthService } from './Auth/auth.service.js';
 import { UserModule } from './user/user.module.js';
 import { PostModule } from './post/post.module.js';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -23,6 +24,12 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     PostModule,
     ConfigModule.forRoot({
       isGlobal: true,
+    }),
+    TypeOrmModule.forRoot({
+      type: 'better-sqlite3',
+      database: './db.sqlite',
+      synchronize: true,
+      autoLoadEntities: true,
     }),
   ],
   controllers: [AppController, AuthController],
