@@ -4,10 +4,11 @@ GET {{baseUrl}}
 ###
 GET {{baseUrl}}/user/123
 ###
-POST {{baseUrl}}/auth/login
+POST {{baseUrl}}/user
 Content-Type: application/json
 
 {
-  "email" : "sa@gmail.com",
-  "senha" : 123
+  "name" : "sam",
+  "email" : "sasd@gmail.com",
+  "password" : "123"
 }
