@@ -14,5 +14,5 @@ export class LoginDto {
     message: 'precisa conter algo',
   })
   @IsString({ message: 'precisa ser string' })
-  senha: number;
+  senha: string;
 }

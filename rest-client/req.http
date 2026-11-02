@@ -2,13 +2,16 @@
 ###
 GET {{baseUrl}}
 ###
-GET {{baseUrl}}/user/123
+POST {{baseUrl}}/auth/login
+
+###
+GET {{baseUrl}}/user/4
 ###
 POST {{baseUrl}}/user
 Content-Type: application/json
 
 {
   "name" : "sam",
-  "email" : "sasd@gmail.com",
+  "email" : "saasd@gmail.com",
   "password" : "123"
 }

@@ -9,5 +9,6 @@ import { commonModule } from '../common/pipes/common.module.js';
   imports: [TypeOrmModule.forFeature([User]), commonModule],
   providers: [UserService],
   controllers: [UserController],
+  exports: [UserService],
 })
 export class UserModule {}

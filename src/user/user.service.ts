@@ -37,4 +37,8 @@ export class UserService {
     console.log(created);
     return created;
   }
+
+  findByEmail(email: string) {
+    return this.userRepository.findOneBy({ email });
+  }
 }
