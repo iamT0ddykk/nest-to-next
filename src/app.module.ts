@@ -3,17 +3,17 @@ import { createObserveModule } from '@nestjs/observe';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { AuthModule } from './Auth/auth.module.js';
-import { AuthController } from './Auth/auth.controller.js';
-import { AuthService } from './Auth/auth.service.js';
 import { UserModule } from './user/user.module.js';
 import { PostModule } from './post/post.module.js';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { commonModule } from './common/pipes/common.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
 @Module({
   imports: [
+    commonModule,
     AuthModule,
     ObserveModule.forRoot({
       appKey: 'YOUR_APP_KEY',
@@ -32,7 +32,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
       autoLoadEntities: true,
     }),
   ],
-  controllers: [AppController, AuthController],
-  providers: [AppService, AuthService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

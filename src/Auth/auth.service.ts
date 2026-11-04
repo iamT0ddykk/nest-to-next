@@ -38,6 +38,10 @@ export class AuthService {
 
     const acessToken = await this.jwtService.signAsync(jwtPayload);
 
-    return acessToken;
+    user.forceLogout = false;
+
+    await this.userService.save(user);
+
+    return { acessToken };
   }
 }

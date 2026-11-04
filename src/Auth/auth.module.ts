@@ -1,11 +1,13 @@
 import { InternalServerErrorException, Module } from '@nestjs/common';
 import { commonModule } from '../common/pipes/common.module.js';
-import { UserService } from '../user/user.service.js';
 import { JwtModule } from '@nestjs/jwt';
+import { UserModule } from '../user/user.module.js';
+import { AuthService } from './auth.service.js';
+import { AuthController } from './auth.controller.js';
 
 @Module({
   imports: [
-    
+    UserModule,
     commonModule,
     JwtModule.registerAsync({
       useFactory: () => {
@@ -24,6 +26,7 @@ import { JwtModule } from '@nestjs/jwt';
       },
     }),
   ],
-  providers: [UserService],
+  controllers: [AuthController],
+  providers: [AuthService],
 })
 export class AuthModule {}
