@@ -18,8 +18,9 @@ export class UserController {
     private readonly userService: UserService,
   ) {}
   @Get(':id')
-  getById(@Param('id', ParseIntPipe) id: string) {
-    return `OI do user ${id}, ${this.configService.getOrThrow('TESTE')}`;
+  getById(@Param('id', ParseIntPipe) id: number) {
+    const envValue = this.configService.get('TESTE', 'valor-padrao');
+    return `OI do user ${id}, ${envValue}`;
   }
 
   @Post()

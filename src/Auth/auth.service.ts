@@ -23,7 +23,7 @@ export class AuthService {
     }
 
     const isPassValid = await this.hashingService.compare(
-      loginDto.senha,
+      loginDto.password,
       user.password,
     );
 

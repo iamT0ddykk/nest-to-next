@@ -1,17 +1,33 @@
 @baseUrl = http://localhost:3000  
 ###
-GET {{baseUrl}}
-###
-POST {{baseUrl}}/auth/login
+
+
 
 ###
-GET {{baseUrl}}/user/4
-###
+GET {{baseUrl}}
+
+
+### LOGAR
+@acessToken = {{authLogin.response.body.acessToken}}
+# @name authLogin
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email" : "asddwq@gmail.com",
+  "password" : "1243"
+}
+
+### VER
+GET {{baseUrl}}/user/123
+Authorization: Barer {{acessToken}}
+
+### CRIAR
 POST {{baseUrl}}/user
 Content-Type: application/json
 
 {
-  "name" : "sam",
-  "email" : "saaaad@gmail.com",
-  "password" : "123"
+  "name" : "dd",
+  "email" : "asddwq@gmail.com",
+  "password" : "1243"
 }

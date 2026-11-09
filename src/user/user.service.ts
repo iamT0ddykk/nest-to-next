@@ -34,7 +34,6 @@ export class UserService {
 
     const created = this.userRepository.save(newUser);
 
-    console.log(created);
     return created;
   }
 

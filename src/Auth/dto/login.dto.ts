@@ -1,4 +1,3 @@
-import { Type } from 'class-transformer';
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
 export class LoginDto {
@@ -14,5 +13,5 @@ export class LoginDto {
     message: 'precisa conter algo',
   })
   @IsString({ message: 'precisa ser string' })
-  senha: string;
+  password: string;
 }
