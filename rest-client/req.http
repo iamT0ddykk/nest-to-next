@@ -20,7 +20,7 @@ Content-Type: application/json
 
 ### VER
 GET {{baseUrl}}/user/123
-Authorization: Barer {{acessToken}}
+Authorization: Bearer {{acessToken}}
 
 ### CRIAR
 POST {{baseUrl}}/user
