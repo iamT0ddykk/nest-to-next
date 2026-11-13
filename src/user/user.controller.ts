@@ -11,7 +11,7 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { CreateUserDto } from './dto/create-user.dto.js';
 import { UserService } from './user.service.js';
-import { AuthGuard } from '@nestjs/passport';
+import { jwtAuthGuard } from '../Auth/guards/jwt-auth.guard.js';
 
 @Controller('user')
 export class UserController {
@@ -20,8 +20,7 @@ export class UserController {
     private readonly userService: UserService,
   ) {}
 
-  @UseGuards(AuthGuard('jwt'))
-  
+  @UseGuards(jwtAuthGuard)
   @Get(':id')
   getById(@Param('id', ParseIntPipe) id: number) {
     const envValue = this.configService.get('TESTE', 'valor-padrao');
