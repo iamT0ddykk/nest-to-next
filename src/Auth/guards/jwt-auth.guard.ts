@@ -1,4 +1,5 @@
-import { ExecutionContext } from '@nestjs/common';
+import { ExecutionContext, UnauthorizedException } from '@nestjs/common';
+import { JsonWebTokenError } from '@nestjs/jwt';
 import { AuthGuard } from '@nestjs/passport';
 
 export class jwtAuthGuard extends AuthGuard('jwt') {
@@ -9,6 +10,11 @@ export class jwtAuthGuard extends AuthGuard('jwt') {
     context: ExecutionContext,
     status?: any,
   ): TUser {
-    return super.handleRequest(err, user, info, context, status);
+    console.log(user, info, context, status);
+
+    if (!user || info instanceof JsonWebTokenError){
+      throw new UnauthorizedException('nao tem permissao')
+    }
+      return super.handleRequest(err, user, info, context, status);
   }
 }

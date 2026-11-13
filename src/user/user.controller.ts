@@ -5,6 +5,7 @@ import {
   Param,
   ParseIntPipe,
   Post,
+  Req,
   UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
@@ -12,6 +13,7 @@ import { ConfigService } from '@nestjs/config';
 import { CreateUserDto } from './dto/create-user.dto.js';
 import { UserService } from './user.service.js';
 import { jwtAuthGuard } from '../Auth/guards/jwt-auth.guard.js';
+import { AuthenticRequest } from '../types/authentic-request.js';
 
 @Controller('user')
 export class UserController {
@@ -22,9 +24,10 @@ export class UserController {
 
   @UseGuards(jwtAuthGuard)
   @Get(':id')
-  getById(@Param('id', ParseIntPipe) id: number) {
-    const envValue = this.configService.get('TESTE', 'valor-padrao');
-    return `OI do user ${id}, ${envValue}`;
+  getById(@Req() req: AuthenticRequest, @Param('id', ParseIntPipe) id: number) {
+    console.log(req.user.email);
+
+    return `OI do user ${id}`;
   }
 
   @Post()
