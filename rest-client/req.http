@@ -1,9 +1,5 @@
 @baseUrl = http://localhost:3000  
 ###
-
-
-
-###
 GET {{baseUrl}}
 
 
@@ -30,4 +26,14 @@ Content-Type: application/json
   "name" : "dd",
   "email" : "asddwq@gmail.com",
   "password" : "1243"
+}
+
+###
+POST {{baseUrl}}/user/me
+Authorization: Bearer {{acessToken}}
+Content-Type: application/json
+
+{
+  "name" : "dd",
+  "email" : "asddwq@gmail.com"
 }
