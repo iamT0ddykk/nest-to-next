@@ -29,11 +29,11 @@ Content-Type: application/json
 }
 
 ###
-POST {{baseUrl}}/user/me
-Authorization: Bearer {{acessToken}}
+PATCH {{baseUrl}}/user/me
 Content-Type: application/json
+Authorization: Bearer {{acessToken}}
 
 {
-  "name" : "dd",
-  "email" : "asddwq@gmail.com"
+  "name" : "ddasd",
+  "email" : "asddddd@gmail.com"
 }

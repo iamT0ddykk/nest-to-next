@@ -2,6 +2,7 @@ import {
   BadRequestException,
   ConflictException,
   Injectable,
+  NotFoundException,
 } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity.js';
@@ -18,16 +19,30 @@ export class UserService {
     private readonly hashingService: HashingService,
   ) {}
 
-  async create(dto: CreateUserDto) {
+  async findOneByOrFail(userData: Partial<User>) {
+    const user = await this.userRepository.findOneBy(userData);
+
+    if (!user) {
+      throw new NotFoundException('Usuario nao encontrado');
+    }
+
+    return user;
+  }
+
+  async failIfEmailExists(email: string) {
     const existsEmail = await this.userRepository.exists({
       where: {
-        email: dto.email,
+        email,
       },
     });
 
     if (existsEmail) {
       throw new ConflictException('email ja existe');
     }
+  }
+
+  async create(dto: CreateUserDto) {
+    await this.failIfEmailExists(dto.email);
 
     const hashedPassword = await this.hashingService.hash(dto.password);
 
@@ -54,9 +69,21 @@ export class UserService {
     return this.userRepository.save(user);
   }
 
-  update(id: string, dto: UpdateUserDto) {
+  async update(id: string, dto: UpdateUserDto) {
     if (!dto.email && !dto.name) {
       throw new BadRequestException('envie algo');
+    }
+
+    const user = await this.findOneByOrFail({ id }); // {} pra ir direto no campo de id
+
+    user.name = dto.name ?? user.name;
+
+    if (dto.email && dto.email !== user.email) {
+      await this.failIfEmailExists(dto.email);
+
+      user.email = dto.email; //nao precisar verificar se tem user email pq  ja verifica if(!dto.email)
+      user.forceLogout = true;
+      console.log(dto);
     }
   }
 }

@@ -10,11 +10,9 @@ export class jwtAuthGuard extends AuthGuard('jwt') {
     context: ExecutionContext,
     status?: any,
   ): TUser {
-    console.log(user, info, context, status);
-
-    if (!user || info instanceof JsonWebTokenError){
-      throw new UnauthorizedException('nao tem permissao')
+    if (!user || info instanceof JsonWebTokenError) {
+      throw new UnauthorizedException('nao tem permissao');
     }
-      return super.handleRequest(err, user, info, context, status);
+    return super.handleRequest(err, user, info, context, status);
   }
 }
