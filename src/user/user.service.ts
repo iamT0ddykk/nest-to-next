@@ -85,5 +85,7 @@ export class UserService {
       user.forceLogout = true;
       console.log(dto);
     }
+
+    return user;
   }
 }
