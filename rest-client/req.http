@@ -37,3 +37,14 @@ Authorization: Bearer {{acessToken}}
   "name" : "dd",
   "email" : "asddddd@gmail.com"
 }
+
+
+### update senha
+PATCH {{baseUrl}}/user/me/password
+Content-Type: application/json
+Authorization: Bearer {{acessToken}}
+
+{
+  "currentPassword" : "dd",
+  "newPassword" : "asddddd@gmail.com"
+}

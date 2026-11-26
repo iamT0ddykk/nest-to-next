@@ -10,6 +10,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from './dto/create-user.dto.js';
 import { HashingService } from '../common/hashing/hashing.service.js';
 import { UpdateUserDto } from './dto/update-user.dto.js';
+import { UpdatePasswordDto } from './dto/update-password.dto.js';
 
 @Injectable()
 export class UserService {
@@ -85,6 +86,16 @@ export class UserService {
       user.forceLogout = true;
       console.log(dto);
     }
+
+    return user;
+  }
+
+  async updatePassword(id: string, dto: UpdatePasswordDto) {
+    
+
+    const user = await this.findOneByOrFail({ id }); // {} pra ir direto no campo de id
+
+
 
     return user;
   }
