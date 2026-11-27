@@ -45,6 +45,6 @@ Content-Type: application/json
 Authorization: Bearer {{acessToken}}
 
 {
-  "currentPassword" : "dd",
+  "currentPassword" : "1243",
   "newPassword" : "asddddd@gmail.com"
 }

@@ -3,6 +3,7 @@ import {
   ConflictException,
   Injectable,
   NotFoundException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity.js';
@@ -91,12 +92,21 @@ export class UserService {
   }
 
   async updatePassword(id: string, dto: UpdatePasswordDto) {
-    
-
     const user = await this.findOneByOrFail({ id }); // {} pra ir direto no campo de id
 
+    const isPasswordValid = await this.hashingService.compare(
+      dto.currentPassword,
+      user.password,
+    );
 
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('suas senhas sao incompativeis');
+    }
 
-    return user;
+    user.password = await this.hashingService.hash(dto.newPassword);
+
+    user.forceLogout = true;
+
+    return this.save(user);
   }
 }
