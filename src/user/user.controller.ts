@@ -2,12 +2,10 @@ import {
   Body,
   Controller,
   Get,
-  Param,
-  ParseIntPipe,
+  NotFoundException,
   Patch,
   Post,
   Req,
-  UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -27,11 +25,11 @@ export class UserController {
   ) {}
 
   @UseGuards(jwtAuthGuard)
-  @Get(':id')
-  getById(@Req() req: AuthenticRequest, @Param('id', ParseIntPipe) id: number) {
-    console.log(req.user.email);
-
-    return `OI do user ${id}`;
+  @Get('me')
+  async getById(@Req() req: AuthenticRequest) {
+    const user = await this.userService.findOneByOrFail({ id: req.user.id });
+ 
+    return new UserResponseDto(user);
   }
 
   @Post()

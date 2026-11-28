@@ -11,7 +11,7 @@ Content-Type: application/json
 
 {
   "email" : "asddwq@gmail.com",
-  "password" : "1243"
+  "password" : "111222"
 }
 
 ### VER
@@ -29,15 +29,9 @@ Content-Type: application/json
 }
 
 ###
-PATCH {{baseUrl}}/user/me
+GET {{baseUrl}}/user/me
 Content-Type: application/json
 Authorization: Bearer {{acessToken}}
-
-{
-  "name" : "dd",
-  "email" : "asddddd@gmail.com"
-}
-
 
 ### update senha
 PATCH {{baseUrl}}/user/me/password
@@ -45,6 +39,6 @@ Content-Type: application/json
 Authorization: Bearer {{acessToken}}
 
 {
-  "currentPassword" : "1243",
-  "newPassword" : "asddddd@gmail.com"
+  "currentPassword" : "1",
+  "newPassword" : "123456"
 }
